@@ -33,8 +33,8 @@ resource "aws_route_table" "private_rtable_b" {
 
 # Associate the route table with internet gateway
 resource "aws_route_table_association" "rt_gw_access" {
-   gateway_id = aws_internet_gateway.gw.id
-    route_table_id = aws_route_table.rtable.id 
+  gateway_id     = aws_internet_gateway.gw.id
+  route_table_id = aws_route_table.rtable.id
 }
 
 # Associate the route table with subnet
