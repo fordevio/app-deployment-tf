@@ -1,6 +1,6 @@
 // Loadbalancer to distribute traffic between the two instances
 resource "aws_lb" "aws_lb" {
-  name               = "aws_lb"
+  name               = "awslb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
@@ -14,10 +14,10 @@ resource "aws_lb" "aws_lb" {
 
 //  Target group to route traffic to the instances
 resource "aws_lb_target_group" "aws_lb_target_group" {
-  name     = "aws_lb_target_group"
+  name     = "aws-lb-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = aws_vpc.aws_vpc.id
+  vpc_id   = aws_vpc.main.id
 
   health_check {
     path                = "/"
@@ -44,13 +44,13 @@ resource "aws_lb_listener" "https" {
 
 resource "aws_lb_target_group_attachment" "aws_lb_tg_attc_a" {
   target_group_arn = aws_lb_target_group.aws_lb_target_group.arn
-  target_id        = aws_instance.public_instance_a.id
+  target_id        = aws_instance.private_instance_a.id
   port             = 80
 
 }
 
 resource "aws_lb_target_group_attachment" "aws_lb_tg_attc_b" {
   target_group_arn = aws_lb_target_group.aws_lb_target_group.arn
-  target_id        = aws_instance.public_instance_b.id
+  target_id        = aws_instance.private_instance_b.id
   port             = 80
 }
