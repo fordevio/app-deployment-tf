@@ -1,6 +1,14 @@
 # app-deployment-tf
-## Terraform module to deploy applicatoin in high availablity in asia-pacific region in AWS
+### Terraform module to deploy applicatoin in high availablity in asia-pacific region in AWS
 
+## Resources
+
+- VPC
+- Subnets
+- NAT Gateway
+- Elastic IPs
+- Ubuntu Instances
+- Load Balancer
 
 ## Usage
 ```
