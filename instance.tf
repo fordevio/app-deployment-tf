@@ -20,10 +20,10 @@ data "aws_ami" "ubuntu" {
 // Create ec2 instances
 resource "aws_instance" "public_instance_a" {
   ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
+  instance_type   = var.public_ec2_instance_type
   subnet_id       = aws_subnet.public_a.id
   security_groups = [aws_security_group.public_sg.id]
-  key_name        = "newKey"
+  key_name        = var.key_name
 
 
   tags = {
@@ -33,10 +33,10 @@ resource "aws_instance" "public_instance_a" {
 
 resource "aws_instance" "public_instance_b" {
   ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
+  instance_type   = var.public_ec2_instance_type
   subnet_id       = aws_subnet.public_b.id
   security_groups = [aws_security_group.public_sg.id]
-  key_name        = "newKey"
+  key_name        = var.key_name
   tags = {
     Name = "public_instance_b"
   }
@@ -44,7 +44,7 @@ resource "aws_instance" "public_instance_b" {
 
 resource "aws_instance" "private_instance_a" {
   ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
+  instance_type   = var.private_ec2_instance_type
   subnet_id       = aws_subnet.private_a.id
   security_groups = [aws_security_group.sg_private.id]
   key_name        = "newKey"
@@ -64,10 +64,10 @@ resource "aws_instance" "private_instance_a" {
 
 resource "aws_instance" "private_instance_b" {
   ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
+  instance_type   = var.private_ec2_instance_type
   security_groups = [aws_security_group.sg_private.id]
   subnet_id       = aws_subnet.private_b.id
-  key_name        = "newKey"
+  key_name        = var.key_name
   user_data       = <<-EOF
               #!/bin/bash
               apt-get update

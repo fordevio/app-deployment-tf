@@ -3,3 +3,6 @@
 
 
 
+```
+terraform plan -var-file=prd.tfvars
+```

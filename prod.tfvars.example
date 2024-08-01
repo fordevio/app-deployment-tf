@@ -1,0 +1,3 @@
+private_ec2_instance_type = "t2.micro"
+public_ec2_instance_type="t2.micro" 
+key_name="newKey" 
